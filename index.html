@@ -1,0 +1,770 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#081522">
+  <meta name="description" content="PCB Solutions Hub helps businesses turn electronic product ideas into working prototypes through PCB design, embedded systems, firmware, and hardware development.">
+  <title>PCB Solutions Hub | Electronics Engineering & Product Development</title>
+
+  <style>
+    :root {
+      --bg: #081522;
+      --surface: #0e2030;
+      --surface2: #132a3b;
+      --teal: #36d6c3;
+      --white: #f4f8fc;
+      --muted: #a7b7c7;
+      --line: rgba(255,255,255,.11);
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { max-width: 100%; }
+    .container { width: min(var(--max), 90%); margin: auto; }
+    .section { padding: 100px 0; }
+    .eyebrow {
+      color: var(--teal);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.2; letter-spacing: -.7px; }
+    h1 { font-size: clamp(2.7rem, 6vw, 5rem); margin: 18px 0; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 12px 0 18px; }
+    h3 { font-size: 1.22rem; }
+    p { color: var(--muted); }
+    .section-intro { max-width: 680px; margin-bottom: 42px; }
+    .section-intro p { font-size: 1.05rem; }
+    .gradient-text {
+      background: linear-gradient(100deg, var(--teal), #a4f6df);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Navigation */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(8,21,34,.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .brand-mark {
+      width: 43px;
+      height: 43px;
+      border: 1px solid rgba(54,214,195,.55);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      font-size: 1.15rem;
+      font-weight: 900;
+      background: rgba(54,214,195,.08);
+    }
+    .brand small {
+      display: block;
+      font-size: .68rem;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
+    .nav-links { display: flex; gap: 25px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: .9rem; }
+    .nav-links a:hover { color: var(--teal); }
+    .menu-toggle {
+      display: none;
+      color: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface);
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 21px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-weight: 750;
+      font-size: .94rem;
+      transition: transform .2s, background .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--teal); color: #06201f; }
+    .btn-primary:hover { background: #74ebd9; }
+    .btn-secondary { border-color: var(--line); background: rgba(255,255,255,.03); }
+    .btn-secondary:hover { border-color: var(--teal); }
+    .button-row { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 28px; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 110px 0 95px;
+      background:
+        radial-gradient(ellipse at 80% 30%, rgba(23,155,157,.18), transparent 43%),
+        linear-gradient(180deg, #091927, var(--bg));
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 55px;
+      align-items: center;
+    }
+    .hero-copy > p { max-width: 610px; font-size: 1.1rem; }
+    .hero-note { font-size: .83rem; margin-top: 22px; }
+    .hero-visual {
+      min-height: 390px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(54,214,195,.23);
+      border-radius: 24px;
+      background:
+        linear-gradient(rgba(54,214,195,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(54,214,195,.045) 1px, transparent 1px),
+        #0b1d2b;
+      background-size: 25px 25px;
+    }
+    .circuit {
+      width: 230px;
+      height: 230px;
+      border: 1px solid rgba(54,214,195,.65);
+      border-radius: 25px;
+      transform: rotate(12deg);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 80px rgba(54,214,195,.13), inset 0 0 45px rgba(54,214,195,.07);
+      position: relative;
+    }
+    .circuit::before, .circuit::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(54,214,195,.35);
+      border-radius: 18px;
+    }
+    .circuit::before { inset: 22px; }
+    .circuit::after { inset: 45px; }
+    .chip {
+      width: 92px;
+      height: 92px;
+      border: 2px solid var(--teal);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      background: #102c3b;
+      font-weight: 900;
+      font-size: 1.5rem;
+      z-index: 1;
+      transform: rotate(-12deg);
+    }
+    .visual-label {
+      position: absolute;
+      padding: 9px 13px;
+      background: rgba(8,21,34,.92);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      font-size: .8rem;
+      color: #d9e9f2;
+    }
+    .label-one { top: 35px; left: 22px; }
+    .label-two { right: 17px; top: 125px; }
+    .label-three { left: 30px; bottom: 35px; }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 42px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .hero-stats strong { display: block; font-size: 1rem; }
+    .hero-stats span { color: var(--muted); font-size: .78rem; }
+
+    /* General cards and grids */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 27px;
+      transition: transform .2s, border-color .2s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(54,214,195,.5); }
+    .card p { font-size: .94rem; margin-bottom: 0; }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      background: rgba(54,214,195,.09);
+      border: 1px solid rgba(54,214,195,.18);
+      border-radius: 12px;
+      margin-bottom: 22px;
+      font-size: 1.3rem;
+    }
+    .card h3 { margin-bottom: 11px; }
+    .alt-section { background: #0a1926; }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+    }
+    .check-list { padding: 0; list-style: none; }
+    .check-list li { margin: 13px 0; color: #dce6ef; }
+    .check-list li::before { content: "✓"; color: var(--teal); font-weight: 900; margin-right: 12px; }
+    .about-panel {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(145deg, #102b3b, #0b1b29);
+    }
+    .about-panel h3 { font-size: 1.5rem; }
+    .phase {
+      padding: 16px 0;
+      display: flex;
+      gap: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+    .phase:last-child { border-bottom: 0; }
+    .phase-number { color: var(--teal); font-weight: 900; }
+    .phase strong { display: block; }
+    .phase span { color: var(--muted); font-size: .88rem; }
+
+    /* Portfolio */
+    .project-card { padding: 0; overflow: hidden; }
+    .project-art {
+      min-height: 175px;
+      display: grid;
+      place-items: center;
+      font-size: 3rem;
+      color: var(--teal);
+      background:
+        linear-gradient(rgba(54,214,195,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(54,214,195,.055) 1px, transparent 1px),
+        #102839;
+      background-size: 18px 18px;
+    }
+    .project-content { padding: 24px; }
+    .tag {
+      display: inline-block;
+      color: var(--teal);
+      background: rgba(54,214,195,.08);
+      border: 1px solid rgba(54,214,195,.2);
+      border-radius: 5px;
+      padding: 4px 8px;
+      margin: 0 5px 8px 0;
+      font-size: .72rem;
+    }
+    .project-content p { font-size: .9rem; }
+
+    /* Process */
+    .step-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(54,214,195,.1);
+      color: var(--teal);
+      font-weight: 850;
+      margin-bottom: 22px;
+    }
+
+    /* CTA and contact */
+    .cta {
+      padding: 55px;
+      border: 1px solid rgba(54,214,195,.3);
+      border-radius: 20px;
+      background: radial-gradient(ellipse at top right, rgba(54,214,195,.13), transparent 55%), var(--surface);
+      text-align: center;
+    }
+    .cta p { max-width: 620px; margin: 0 auto; }
+    .cta .button-row { justify-content: center; }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 55px; }
+    .contact-links { display: grid; gap: 13px; margin-top: 25px; }
+    .contact-link {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface);
+    }
+    .contact-link strong { display: block; }
+    .contact-link span { color: var(--muted); font-size: .86rem; }
+    .contact-form {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .field { margin-bottom: 17px; }
+    .field label { display: block; margin-bottom: 7px; font-size: .88rem; }
+    .field input, .field textarea {
+      width: 100%;
+      padding: 13px 14px;
+      color: var(--white);
+      background: #091927;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      outline: none;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--teal); }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .form-note { font-size: .78rem; margin: 12px 0 0; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); padding: 30px 0; }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .footer-inner p { margin: 0; font-size: .83rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: .85rem; color: var(--muted); }
+
+    .reveal { animation: fade-up .7s ease both; }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    :focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-grid { gap: 35px; }
+      .hero-visual { min-height: 340px; }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .about-grid, .contact-grid { gap: 30px; }
+      .section { padding: 75px 0; }
+    }
+    @media (max-width: 650px) {
+      .nav { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: #081522;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 5px 0; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .hero { padding: 70px 0 55px; }
+      .hero-stats { gap: 8px; }
+      .hero-stats strong { font-size: .85rem; }
+      .hero-stats span { font-size: .7rem; }
+      .hero-visual { min-height: 300px; }
+      .circuit { transform: scale(.82) rotate(12deg); }
+      .label-two { right: 8px; }
+      .cta { padding: 30px 20px; }
+      .contact-form { padding: 20px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="PCB Solutions Hub home">
+        <span class="brand-mark">PS</span>
+        <span>PCB SOLUTIONS HUB<small>ENGINEERING & INNOVATION</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false"
+        aria-controls="navLinks" aria-label="Toggle navigation">☰ Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#process">Our Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">From concept to working prototype</span>
+          <h1>Engineering ideas into <span class="gradient-text">real products.</span></h1>
+          <p>
+            We help businesses transform electronic product concepts into
+            practical hardware through PCB design, embedded systems, firmware,
+            and prototype development.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#contact">Discuss Your Project ↗</a>
+            <a class="btn btn-secondary" href="#services">Explore Our Services</a>
+          </div>
+          <p class="hero-note">Electronics engineering · Hardware development · Embedded solutions</p>
+          <div class="hero-stats">
+            <div><strong>Electronics</strong><span>Hardware design</span></div>
+            <div><strong>Embedded</strong><span>Firmware & control</span></div>
+            <div><strong>Prototyping</strong><span>Build & validation</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Illustration of an electronic circuit">
+          <span class="visual-label label-one">PCB DESIGN</span>
+          <span class="visual-label label-two">EMBEDDED SYSTEMS</span>
+          <span class="visual-label label-three">PRODUCT DEVELOPMENT</span>
+          <div class="circuit"><div class="chip">PSH</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">What we do</span>
+          <h2>Complete engineering <span class="gradient-text">solutions.</span></h2>
+          <p>From individual engineering tasks to integrated product development,
+            we help turn technical requirements into practical solutions.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-icon">▦</div>
+            <h3>PCB Design & Layout</h3>
+            <p>Schematic capture, multilayer PCB layout, component selection,
+              design-rule checks, and manufacturing-ready design files.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">⌘</div>
+            <h3>Embedded Systems</h3>
+            <p>Microcontroller-based electronics, peripheral integration,
+              communication interfaces, and hardware-software integration.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">⌁</div>
+            <h3>Firmware Development</h3>
+            <p>Embedded software, device drivers, control logic, communication
+              protocols, debugging, and system integration.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">◎</div>
+            <h3>IoT Product Development</h3>
+            <p>Connected devices, sensor integration, wireless communication,
+              and practical monitoring and control solutions.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">▣</div>
+            <h3>Hardware Prototyping</h3>
+            <p>Prototype planning, component integration, board bring-up,
+              initial testing, and design iteration.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">⌕</div>
+            <h3>Testing & Debugging</h3>
+            <p>Systematic fault analysis, hardware verification, firmware
+              troubleshooting, and engineering improvement recommendations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-section" id="about">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow">About PCB Solutions Hub</span>
+          <h2>Your engineering partner from <span class="gradient-text">idea to prototype.</span></h2>
+          <p>
+            Developing an electronic product takes more than a circuit design.
+            Hardware, firmware, components, integration, and testing must work
+            together.
+          </p>
+          <p>
+            PCB Solutions Hub supports clients throughout the product development
+            journey, helping define requirements, design electronics, integrate
+            embedded functionality, and work toward a tested prototype.
+          </p>
+          <ul class="check-list">
+            <li>Requirements-focused engineering</li>
+            <li>Hardware and firmware collaboration</li>
+            <li>Practical design and integration</li>
+            <li>Clear communication throughout development</li>
+          </ul>
+        </div>
+        <div class="about-panel">
+          <span class="eyebrow">Our approach</span>
+          <h3>A structured path to product development</h3>
+          <div class="phase">
+            <span class="phase-number">01</span>
+            <div><strong>Understand</strong><span>Define requirements, constraints, and objectives.</span></div>
+          </div>
+          <div class="phase">
+            <span class="phase-number">02</span>
+            <div><strong>Design</strong><span>Develop the electronics and technical architecture.</span></div>
+          </div>
+          <div class="phase">
+            <span class="phase-number">03</span>
+            <div><strong>Integrate</strong><span>Bring hardware and embedded software together.</span></div>
+          </div>
+          <div class="phase">
+            <span class="phase-number">04</span>
+            <div><strong>Test & Improve</strong><span>Evaluate performance and address identified issues.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">Engineering capabilities</span>
+          <h2>Solutions built around <span class="gradient-text">real requirements.</span></h2>
+          <p>Examples of the types of engineering projects our team can support.
+            These are capability examples, not claims of completed client projects.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card project-card">
+            <div class="project-art" aria-hidden="true">▦</div>
+            <div class="project-content">
+              <span class="tag">PCB DESIGN</span>
+              <span class="tag">HARDWARE</span>
+              <h3>Custom Electronics Board</h3>
+              <p>Board architecture, component selection, schematic development,
+                PCB layout, and manufacturing preparation.</p>
+            </div>
+          </article>
+          <article class="card project-card">
+            <div class="project-art" aria-hidden="true">⌁</div>
+            <div class="project-content">
+              <span class="tag">EMBEDDED</span>
+              <span class="tag">FIRMWARE</span>
+              <h3>Microcontroller-Based Device</h3>
+              <p>Peripheral integration, firmware development, interface
+                implementation, and board bring-up.</p>
+            </div>
+          </article>
+          <article class="card project-card">
+            <div class="project-art" aria-hidden="true">◎</div>
+            <div class="project-content">
+              <span class="tag">IoT</span>
+              <span class="tag">INTEGRATION</span>
+              <h3>Connected Monitoring System</h3>
+              <p>Sensor interfaces, embedded processing, communication
+                architecture, and system-level integration.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-section" id="process">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">How we work</span>
+          <h2>A clear process. <span class="gradient-text">Practical engineering.</span></h2>
+          <p>Every project starts by understanding what needs to be built,
+            how it should work, and what constraints matter most.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="step-number">01</div>
+            <h3>Project Consultation</h3>
+            <p>Discuss the idea, requirements, budget, timeline, and expected deliverables.</p>
+          </article>
+          <article class="card">
+            <div class="step-number">02</div>
+            <h3>Planning & Design</h3>
+            <p>Define the architecture, engineering tasks, components, and design approach.</p>
+          </article>
+          <article class="card">
+            <div class="step-number">03</div>
+            <h3>Development & Delivery</h3>
+            <p>Execute the agreed work, evaluate results, and deliver the specified project files.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta">
+          <span class="eyebrow">Have an idea?</span>
+          <h2>Let's discuss your next <span class="gradient-text">electronics project.</span></h2>
+          <p>Share your requirements and let us explore a practical engineering
+            approach for your product or prototype.</p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#contact">Start a Conversation ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-section" id="contact">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">Contact us</span>
+          <h2>Tell us about your <span class="gradient-text">project.</span></h2>
+          <p>Provide a brief overview of your idea, technical needs, and expected outcome.</p>
+        </div>
+        <div class="contact-grid">
+          <div>
+            <h3>Let's connect</h3>
+            <p>Use the contact options below to discuss your engineering requirements.</p>
+            <div class="contact-links">
+              <!-- Replace these placeholders with your real contact details. -->
+              <a class="contact-link" href="mailto:YOUR_EMAIL@example.com">
+                <strong>Email</strong>
+                <span>YOUR_EMAIL@example.com — replace with your business email</span>
+              </a>
+              <a class="contact-link" href="https://www.linkedin.com/company/YOUR_LINKEDIN_PAGE/"
+                target="_blank" rel="noopener noreferrer">
+                <strong>LinkedIn</strong>
+                <span>Visit our company profile — replace the example link</span>
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Your email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="service">What do you need?</label>
+              <input id="service" name="service" placeholder="e.g. PCB design, embedded systems" required>
+            </div>
+            <div class="field">
+              <label for="message">Project details</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Prepare Email Inquiry ↗</button>
+            <p class="form-note" id="formNote">
+              This form opens your email application. It does not send or store
+              information by itself.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark">PS</span>
+        <span>PCB SOLUTIONS HUB<small>ENGINEERING & INNOVATION</small></span>
+      </a>
+      <p>© <span id="year"></span> PCB Solutions Hub. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      // Replace this with your real business email address.
+      const recipient = "YOUR_EMAIL@example.com";
+
+      if (recipient === "YOUR_EMAIL@example.com") {
+        document.getElementById("formNote").textContent =
+          "Before using this form, replace YOUR_EMAIL@example.com in the HTML with your real business email address.";
+        return;
+      }
+
+      const form = new FormData(event.currentTarget);
+      const subject = encodeURIComponent(
+        "Project inquiry from " + form.get("name")
+      );
+      const body = encodeURIComponent(
+        "Name: " + form.get("name") + "\n" +
+        "Email: " + form.get("email") + "\n" +
+        "Service: " + form.get("service") + "\n\n" +
+        "Project details:\n" + form.get("message")
+      );
+
+      window.location.href =
+        "mailto:" + recipient + "?subject=" + subject + "&body=" + body;
+    });
+  </script>
+</body>
+</html>
